@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMEmojisCollection.h"
 
-@interface ViewController : UIViewController
+@interface SMRootViewController : UIViewController
 
+@property (nonatomic, strong) SMEmojisCollection *emojisCollection;
 
 @end
 
