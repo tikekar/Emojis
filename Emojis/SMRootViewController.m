@@ -9,7 +9,7 @@
 #import "SMRootViewController.h"
 #import "SMEmojiCollectionViewCell.h"
 #import "SMEmojiDetailsViewController.h"
-
+#import "SVProgressHUD.h"
 
 @interface SMRootViewController () <SMEmojisCollectionDelegate>
 
@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SVProgressHUD show];
     self.emojisCollection = [[SMEmojisCollection alloc] init];
     self.emojisCollection.delegate = (id)self;
     [self.emojisCollection initialize];
@@ -29,12 +30,13 @@
 
 -(void) populateEmojis {
     [self.collectionView reloadData];
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5; //self.emojisCollection.emojis.count;
+    return self.emojisCollection.emojis.count;
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
