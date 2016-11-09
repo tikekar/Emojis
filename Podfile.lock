@@ -1,0 +1,17 @@
+PODS:
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+  - SVProgressHUD (2.0.3)
+
+DEPENDENCIES:
+  - SDWebImage (~> 3.8)
+  - SVProgressHUD
+
+SPEC CHECKSUMS:
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
+
+PODFILE CHECKSUM: 0606bf7ad4a59bd57c75ebb6707aa6c0ba95d751
+
+COCOAPODS: 1.1.1
