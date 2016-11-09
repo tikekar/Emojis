@@ -7,12 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SMEmoji.h"
+
+@protocol SMEmojisViewCellDelegate <NSObject>
+
+@optional
+
+- (void) emojiDownloaded:(SMEmoji *) aEmojiObject;
+
+@end
+
 
 @interface SMEmojiCollectionViewCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, strong) SMEmoji *emojiObject;
+@property (strong, nonatomic) id delegate;
 
--(void) setEmoji:(NSString *) aUrlString;
+-(void) setEmoji:(SMEmoji *) aSMEmoji;
 
 @end

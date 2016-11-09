@@ -11,9 +11,12 @@
 #import "SMEmojiDetailsViewController.h"
 #import "SVProgressHUD.h"
 
-@interface SMRootViewController () <SMEmojisCollectionDelegate>
+@interface SMRootViewController () <SMEmojisCollectionDelegate, SMEmojisViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *emojiNames;
+@property (nonatomic) int startIndex;
+@property (nonatomic) int endIndex;
 
 @end
 
@@ -23,20 +26,42 @@
     [super viewDidLoad];
     
     [SVProgressHUD show];
+    self.startIndex = 0;
+    self.endIndex = 50;
+    self.emojiNames = [[NSMutableArray alloc] init];
     self.emojisCollection = [[SMEmojisCollection alloc] init];
     self.emojisCollection.delegate = (id)self;
     [self.emojisCollection initialize];
 }
 
 -(void) populateEmojis {
+    
+    [self addMoreEmojis];
+    
+    //[SVProgressHUD dismiss];
+}
+
+-(void) addMoreEmojis {
+    for(int i=self.startIndex; i<self.endIndex; i++) {
+        [self.emojiNames addObject:self.emojisCollection.emojiNames[i]];
+        
+    }
+    self.startIndex = self.endIndex;
+    self.endIndex = self.endIndex + 50;
+    if(self.emojisCollection.emojiNames.count < self.endIndex) {
+        self.endIndex = (int)self.emojisCollection.emojiNames.count;
+    }
     [self.collectionView reloadData];
+}
+
+-(void) emojiDownloaded:(SMEmoji *) aEmojiObject {
     [SVProgressHUD dismiss];
 }
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.emojisCollection.emojis.count;
+    return self.emojiNames.count;
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -47,10 +72,17 @@
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     SMEmojiCollectionViewCell* cell_ = (SMEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"EmojiCell" forIndexPath:indexPath];
-    NSString *key_ = self.emojisCollection.emojiNames[indexPath.row];
+    cell_.delegate = (id)self;
+    NSString *key_ = self.emojiNames[indexPath.row];
     if(key_ != nil) {
-        [cell_ setEmoji:[self.emojisCollection.emojis objectForKey:key_]];
+        SMEmoji *smEmoji_ = [[SMEmoji alloc] init];
+        [smEmoji_ setEmoji:key_ url:[self.emojisCollection.emojis objectForKey:key_]];
+        [cell_ setEmoji:smEmoji_];
     }
+    if(self.emojiNames.count-1 == indexPath.row) {
+        [self addMoreEmojis];
+    }
+    
     return cell_;
 }
 
