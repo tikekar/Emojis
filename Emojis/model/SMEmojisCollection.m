@@ -21,7 +21,8 @@
                                           dataTaskWithURL:myURL completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
                                               NSError *e = nil;
                                               self.emojis = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&e];
-                                              self.emojiNames = [self.emojis allKeys];
+                                              // sort it to maintain sequence. 
+                                              self.emojiNames = [[self.emojis allKeys] sortedArrayUsingSelector:@selector(compare:)];
                                               [self.delegate populateEmojis];
                                           }];
     
