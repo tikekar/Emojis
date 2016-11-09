@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // Show title in the navigation bar title
     self.navigationItem.title = self.emoji.emojiName;
     NSString *urlString_ = self.emoji.emojiURL;
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:urlString_]

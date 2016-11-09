@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SMRootViewViewController.h
 //  Emojis
 //
 //  Created by Gauri Tikekar on 11/8/16.

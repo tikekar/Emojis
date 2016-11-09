@@ -1,6 +1,7 @@
 //
 //  SMEmojiDetailsViewController.h
 //  Emojis
+//  Emoji Details View
 //
 //  Created by Gauri Tikekar on 11/8/16.
 //  Copyright © 2016 Gauri Tikekar. All rights reserved.
