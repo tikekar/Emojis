@@ -21,9 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ngh-Vv-6xp">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ngh-Vv-6xp">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4NF-Ti-dtf">
                                     <size key="itemSize" width="84" height="84"/>
@@ -58,6 +57,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ngh-Vv-6xp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="E4E-E2-kPh"/>
+                            <constraint firstAttribute="bottom" secondItem="ngh-Vv-6xp" secondAttribute="bottom" id="X8Y-ML-RXj"/>
+                            <constraint firstAttribute="trailing" secondItem="ngh-Vv-6xp" secondAttribute="trailing" id="dsA-nf-wrd"/>
+                            <constraint firstItem="ngh-Vv-6xp" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iTV-JU-Sc3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Emojis" id="gca-8k-2t8"/>
                     <connections>
@@ -81,12 +86,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PDR-vf-wPP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PDR-vf-wPP">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PDR-vf-wPP" firstAttribute="leading" secondItem="SZO-68-I8W" secondAttribute="leading" id="DD6-oJ-nA8"/>
+                            <constraint firstItem="PDR-vf-wPP" firstAttribute="top" secondItem="SZO-68-I8W" secondAttribute="top" constant="64" id="Iu1-cX-cvK"/>
+                            <constraint firstAttribute="bottom" secondItem="PDR-vf-wPP" secondAttribute="bottom" id="veZ-Dq-zV6"/>
+                            <constraint firstAttribute="trailing" secondItem="PDR-vf-wPP" secondAttribute="trailing" id="wxy-tD-2pW"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uV1-ao-g83"/>
                     <connections>

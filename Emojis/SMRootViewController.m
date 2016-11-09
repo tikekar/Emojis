@@ -28,6 +28,7 @@
     [SVProgressHUD show];
     self.startIndex = 0;
     self.endIndex = 50;
+    // [self.collectionView setPrefetchingEnabled:NO];
     self.emojiNames = [[NSMutableArray alloc] init];
     self.emojisCollection = [[SMEmojisCollection alloc] init];
     self.emojisCollection.delegate = (id)self;
@@ -35,10 +36,7 @@
 }
 
 -(void) populateEmojis {
-    
     [self addMoreEmojis];
-    
-    //[SVProgressHUD dismiss];
 }
 
 -(void) addMoreEmojis {
@@ -51,7 +49,10 @@
     if(self.emojisCollection.emojiNames.count < self.endIndex) {
         self.endIndex = (int)self.emojisCollection.emojiNames.count;
     }
-    [self.collectionView reloadData];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
+    
 }
 
 -(void) emojiDownloaded:(SMEmoji *) aEmojiObject {
@@ -71,7 +72,13 @@
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    SMEmojiCollectionViewCell* cell_ = (SMEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"EmojiCell" forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"EmojiCell";
+    SMEmojiCollectionViewCell *cell_ = (SMEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if (cell_ == nil)
+    {
+        cell_ =  (SMEmojiCollectionViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    }
     cell_.delegate = (id)self;
     NSString *key_ = self.emojiNames[indexPath.row];
     if(key_ != nil) {

@@ -14,7 +14,7 @@
 -(void) setEmoji:(SMEmoji *) aSMEmoji {
     self.emojiObject = aSMEmoji;
     self.urlString = self.emojiObject.emojiURL;
-    self.imageView.layer.opacity = 0.0f;
+    
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.urlString] placeholderImage:nil options:SDWebImageRefreshCached];
     
     if(self.imageView.image == nil) {
@@ -25,15 +25,14 @@
                                   NSLog(@"%@", error);
                               }
                               else {
-                                  self.imageView.layer.opacity = 1.0f;
                                   [self.delegate emojiDownloaded:self.emojiObject];
                               }
                           }];
     }
     else {
-        self.imageView.layer.opacity = 1.0f;
         [self.delegate emojiDownloaded:self.emojiObject];
     }
+   
 }
 
 @end
